@@ -8,6 +8,6 @@ package app_proyecto3viajes;
  *
  * @author tzulmoran
  */
-public class Chofer {
+public class Piloto {
     
 }
