@@ -72,7 +72,7 @@ public class Ruta {
     //Sobreescritura del formato 
     @Override
     public void aLineaTexto(){
-        return "El origen: " + getOrigen + ""
+        return "El origen: " + getOrigen + "Destino" + getDestino + " Kilómetros: " + getKilometros
     }
     
     

@@ -9,5 +9,6 @@ package app_proyecto3viajes;
  * @author tzulmoran
  */
 public class Viaje {
+    //Atributos privados
     
 }

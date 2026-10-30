@@ -9,5 +9,6 @@ package app_proyecto3viajes;
  * @author angls
  */
 public class Empresa {
+    //
     
 }
