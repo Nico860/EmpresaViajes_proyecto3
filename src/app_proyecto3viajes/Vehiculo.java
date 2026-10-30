@@ -8,7 +8,7 @@ package app_proyecto3viajes;
  *
  * @author angls
  */
-public abstract class Vehiculo(){
+public abstract class Vehiculo{
     //Atributos privados
     private String placa;
     private int capacidad;
@@ -16,6 +16,18 @@ public abstract class Vehiculo(){
     private double kilometraje;
     private double kmDesdeServicio;
     private boolean activo;
+
+    public Vehiculo(String placa, int capacidad, String estado, double kilometraje, double kmDesdeServicio, boolean activo) {
+        this.placa = placa;
+        this.capacidad = capacidad;
+        this.estado = estado;
+        this.kilometraje = kilometraje;
+        this.kmDesdeServicio = kmDesdeServicio;
+        this.activo = activo;
+    }
+    
+    
+    
     
     public abstract double calcularCobro();
     public abstract boolean esDeCarga();
