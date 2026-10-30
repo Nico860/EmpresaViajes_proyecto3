@@ -11,7 +11,29 @@ package app_proyecto3viajes;
 public abstract class Persona {
     private String dpi;
     private String nombre;
-    private String telefono;
+
+    public Persona(String dpi, String nombre) {
+        this.dpi = dpi;
+        this.nombre = nombre;
+    }
+
+    public String getDpi() {
+        return dpi;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+
+    public void setDpi(String dpi) {
+        this.dpi = dpi;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public abstract String descripcion();
     
     
     
