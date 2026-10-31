@@ -15,13 +15,14 @@ public class Bus extends Vehiculo{
     }
 
     @Override
-    public double calcularCobro() {
-        return Viaje.getCapacidad() * 2.50;
+    public double calcularCobro(Ruta ruta, int cantidad) {
+        //Se cbra la tarifa por la cantidad de pasajeros
+        return ruta.getTarifaBase() * cantidad;
     }
 
     @Override
     public boolean esDeCarga() {
-        if(
+        
     }
 
     @Override

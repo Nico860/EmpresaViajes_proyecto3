@@ -11,4 +11,15 @@ package app_proyecto3viajes;
  */
 public class Microbus {
     
+    @Override
+    public double calcularCobro(Ruta ruta, int cantidad){
+    //Declarar varialbe del recargo fijo por pasajero
+    double recargoFijo = 5.00;
+    
+    //Desarrollar la operación 
+    return (ruta.getTarifaBase() + recargoFijo)*cantidad;
+    }
+    
+    
+    
 }

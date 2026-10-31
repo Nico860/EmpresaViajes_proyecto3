@@ -28,8 +28,8 @@ public abstract class Vehiculo{
     
     
     
-    
-    public abstract double calcularCobro();
+    //Métod que define lo que se hace con todo vehículo
+    public abstract double calcularCobro(Ruta ruta, int cantidad);
     public abstract boolean esDeCarga();
     public abstract boolean registrarKilometros();
     public abstract String aLineaTexto();

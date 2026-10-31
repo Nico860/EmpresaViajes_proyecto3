@@ -10,4 +10,13 @@ package app_proyecto3viajes;
  */
 public class PickupCarga {
     
+    @Override
+    public double calcularCobro(Ruta ruta, int cantidad){
+        //Definir el costo de flete por quintal
+        double precioPorQuintal = 15.00;
+        
+        //Retornar el precio multiplicado por cantidad de quintales
+        return precioPorQuintal * cantidad;
+    }
+    
 }
