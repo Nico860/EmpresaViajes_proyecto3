@@ -9,10 +9,9 @@ package app_proyecto3viajes;
  *
  * @author angls
  */
-public class Microbus extends Vehiculo {
+public class Microbus extends Vehiculo implements Persistible{
     
-    //Constructir que pasa los datos al padre
-    public Microbus(String placa, int capacidad, String estado, double kilometraje, double kmDesdeServicio, boolean activo) {
+    public Microbus(String placa, int capacidad, String estado, double kilometraje, double kmDesdeServicio, boolean activo){
         super(placa, capacidad, estado, kilometraje, kmDesdeServicio, activo);
     }
     
@@ -48,6 +47,16 @@ public class Microbus extends Vehiculo {
     @Override
     public String aLineaTexto() {
         return "MICROBUS," + getPlaca() + "," + getCapacidad() + "," + getEstado() + "," + getKilometraje() + "," + getKmDesdeServicio() + "," + isActivo();
+    }
+    
+    @Override
+    public Double registrarKilometros(){
+        
+    }
+    
+    @Override
+    public String aLineaTexto(){
+        return ("");
     }
     
     

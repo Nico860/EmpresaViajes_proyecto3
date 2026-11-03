@@ -38,7 +38,6 @@ public abstract class Persona {
         this.nombre = nombre;
     }
     
-    //Método abstracto sin cuerpo
     public abstract String descripcion();
     
     
