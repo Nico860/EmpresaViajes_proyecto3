@@ -9,7 +9,12 @@ package app_proyecto3viajes;
  *
  * @author angls
  */
-public class Microbus {
+public class Microbus extends Vehiculo implements Persistible{
+    
+    public Microbus(String placa, int capacidad, String estado, double kilometraje, double kmDesdeServicio, boolean activo){
+        super(placa, capacidad, estado, kilometraje, kmDesdeServicio, activo);
+    }
+    
     
     @Override
     public double calcularCobro(Ruta ruta, int cantidad){
@@ -18,6 +23,16 @@ public class Microbus {
     
     //Desarrollar la operación 
     return (ruta.getTarifaBase() + recargoFijo)*cantidad;
+    }
+    
+    @Override
+    public Double registrarKilometros(){
+        
+    }
+    
+    @Override
+    public String aLineaTexto(){
+        return ("");
     }
     
     
