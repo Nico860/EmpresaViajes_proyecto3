@@ -59,6 +59,16 @@ public class Microbus extends Vehiculo implements Persistible{
         return ("");
     }
     
+    @Override
+    public Double registrarKilometros(){
+        
+    }
+    
+    @Override
+    public String aLineaTexto(){
+        return ("");
+    }
+    
     
     
 }
