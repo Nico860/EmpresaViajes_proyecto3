@@ -58,7 +58,7 @@ public class Empresa {
             return "ERROR: El vehículo " + vehiculo.getPlaca() + " está 'En Mantenimiento' y no puede salir a viajar.";
         }
         
-        // RF-06: Validación de capacidad (no cero, no negativa, no mayor a capacidad)
+        // Validación de cantidad
         if (cantidad <= 0) {
             return "ERROR: La cantidad debe ser un número mayor a cero.";
         }
@@ -66,8 +66,8 @@ public class Empresa {
             return "ERROR: La cantidad (" + cantidad + ") supera la capacidad máxima del vehículo (" + vehiculo.getCapacidad() + ").";
         }
 
-        // RF-07: Validación de tipo de servicio (Pickup = solo carga, Bus/Microbus = solo pasajeros)
-        // Usamos el método polimórfico 'esDeCarga()' que responde cada tipo de vehículo
+        // Verificar el tipo de transporte (Bus o pickup)
+        // implementación del método esDeCarga() que responde cada tipo de vehículo
         boolean esTipoCarga = vehiculo.esDeCarga(); 
         if (esTipoCarga) {
             // Es un Pickup: la cantidad representa quintales
@@ -76,26 +76,26 @@ public class Empresa {
             // Es un Bus o Microbús: la cantidad representa pasajeros
         }
 
-        // RF-09: Validación de choque de fechas y horas
+        //Verificación del confliccto de vehiculo y piloto, respecto a fecha y hora.
         if (hayChoque(vehiculo, piloto, fecha, hora)) {
             return "ERROR: El vehículo o el piloto ya tienen un viaje agendado exactamente a esa misma fecha y hora.";
         }
 
-        // --- SI PASA TODAS LAS VALIDACIONES, SE PROCESA EL VIAJE ---
+        //Posteriormente procede la generación del viaje
 
-        // POLIMORFISMO REAL: El cobro se calcula llamando a calcularCobro sin importar si es Bus, Microbus o Pickup
+        //Aplicación del polimorfismo el cobro se calcula llamando a calcularCobro sin importar si es Bus, Microbus o Pickup
         double cobroCalculado = vehiculo.calcularCobro(ruta, cantidad);
 
         // Crear y guardar el nuevo objeto Viaje
         Viaje nuevoViaje = new Viaje(fecha, hora, ruta, vehiculo, piloto, cantidad, cobroCalculado);
         viajes.add(nuevoViaje);
 
-        // RF-10: Acumular kilómetros recorridos y verificar si requiere mantenimiento
+        //llamar a metodos para acumular kilometros y verificar si requiere servicio
         boolean necesitaMantenimiento = vehiculo.registrarKilometros(ruta.getKilometros());
 
-        // Construir mensaje de éxito
+        // Mostrar mensaje de procedimiento exitoso
         String mensajeRespuesta = "¡Viaje registrado con éxito!\nCobro Total: Q " + String.format("%.2f", cobroCalculado);
-        
+        //Si posterior a un viaje el vehículo requiere serivicio, mostrar mensaje
         if (necesitaMantenimiento) {
             mensajeRespuesta += "\n AVISO: El vehículo alcanzó los 5,000 km desde su último servicio y ha pasado a estado 'En Mantenimiento'.";
         }
