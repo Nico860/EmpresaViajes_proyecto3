@@ -9,32 +9,40 @@ package app_proyecto3viajes;
  * @author tzulmoran
  */
 public abstract class Persona {
-    private String dpi;
-    private String nombre;
+    //Crear accesos directos con protectec para 
+    //las clases hijas 
+    protected String dpi;
+    protected String nombre;
 
+    //Constructor
     public Persona(String dpi, String nombre) {
         this.dpi = dpi;
         this.nombre = nombre;
     }
+    
+    //Métodos Getter y Setter
 
     public String getDpi() {
         return dpi;
+    }
+
+    public void setDpi(String dpi) {
+        this.dpi = dpi;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-
-    public void setDpi(String dpi) {
-        this.dpi = dpi;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+    //Método abstracto sin cuerpo
     public abstract String descripcion();
     
+    
+
     
     
     
