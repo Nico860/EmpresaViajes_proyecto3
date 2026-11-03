@@ -8,7 +8,7 @@ package app_proyecto3viajes;
  *
  * @author angls
  */
-public class Ruta {
+public class Ruta implements Persistible {
     //Atributos de la clase
     private String Origen;
     private String Destino;
@@ -69,12 +69,10 @@ public class Ruta {
         this.activa = activa;
     }
     
-    //Sobreescritura del formato 
+    //Formato para guardar la ruta en archivo de texto
     @Override
-    public void aLineaTexto(){
-        return "El origen: " + getOrigen + "Destino" + getDestino + " Kilómetros: " + getKilometros
+    public String aLineaTexto() {
+        return getOrigen() + "," + getDestino() + "," + getKilometros() + "," + getTarifaBase() + "," + isActiva();
     }
-    
-    
-    
+
 }

@@ -44,6 +44,7 @@ public class PickupCarga extends Vehiculo {
     }
     
     //Formato del texto en archivo
+    @Override
     public String aLineaTexto() {
         return "PICKUP," + getPlaca() + "," + getCapacidad() + "," + getEstado() + "," + getKilometraje() + "," + getKmDesdeServicio() + "," + isActivo();
     }

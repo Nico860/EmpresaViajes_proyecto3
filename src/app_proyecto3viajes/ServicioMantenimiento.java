@@ -4,11 +4,13 @@
  */
 package app_proyecto3viajes;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author angls
  */
-public class ServicioMantenimiento {
+public class ServicioMantenimiento implements Persistible {
     //Atributos privados
     private LocalDate fecha;
     private String descripcion;

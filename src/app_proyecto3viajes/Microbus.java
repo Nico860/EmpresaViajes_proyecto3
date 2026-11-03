@@ -48,27 +48,5 @@ public class Microbus extends Vehiculo implements Persistible{
     public String aLineaTexto() {
         return "MICROBUS," + getPlaca() + "," + getCapacidad() + "," + getEstado() + "," + getKilometraje() + "," + getKmDesdeServicio() + "," + isActivo();
     }
-    
-    @Override
-    public Double registrarKilometros(){
-        
-    }
-    
-    @Override
-    public String aLineaTexto(){
-        return ("");
-    }
-    
-    @Override
-    public Double registrarKilometros(){
-        
-    }
-    
-    @Override
-    public String aLineaTexto(){
-        return ("");
-    }
-    
-    
-    
+
 }

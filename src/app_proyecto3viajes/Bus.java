@@ -17,7 +17,7 @@ public class Bus extends Vehiculo{
     
     @Override
     public double calcularCobro(Ruta ruta, int cantidad) {
-        //Se cbra la tarifa por la cantidad de pasajeros
+        //Se cobra la tarifa por la cantidad de pasajeros
         return ruta.getTarifaBase() * cantidad;
     }
 
@@ -28,7 +28,7 @@ public class Bus extends Vehiculo{
 
     //Acumulador de kilometros
     @Override
-    public boolean registrarKilometros() {
+    public boolean registrarKilometros(double km) {
         //Dos acumuladores
         setKilometraje(getKilometraje() + km);
         setKmDesdeServicio(getKmDesdeServicio() + km);
