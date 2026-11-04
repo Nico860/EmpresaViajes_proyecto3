@@ -10,8 +10,8 @@ package app_proyecto3viajes;
  */
 public class Ruta implements Persistible {
     //Atributos de la clase
-    private String Origen;
-    private String Destino;
+    private String origen;
+    private String destino;
     private double kilometros;
     private double tarifaBase;
     private boolean activa;
@@ -19,9 +19,9 @@ public class Ruta implements Persistible {
     
     //constructor
 
-    public Ruta(String Origen, String Destino, double kilometros, double tarifaBase, boolean activa) {
-        this.Origen = Origen;
-        this.Destino = Destino;
+    public Ruta(String origen, String destino, double kilometros, double tarifaBase, boolean activa) {
+        this.origen = origen;
+        this.destino = destino;
         this.kilometros = kilometros;
         this.tarifaBase = tarifaBase;
         this.activa = activa;
@@ -30,19 +30,19 @@ public class Ruta implements Persistible {
     //getters
 
     public String getOrigen() {
-        return Origen;
+        return origen;
     }
 
-    public void setOrigen(String Origen) {
-        this.Origen = Origen;
+    public void setOrigen(String origen) {
+        this.origen = origen;
     }
 
     public String getDestino() {
-        return Destino;
+        return destino;
     }
 
-    public void setDestino(String Destino) {
-        this.Destino = Destino;
+    public void setDestino(String destino) {
+        this.destino = destino;
     }
 
     public double getKilometros() {

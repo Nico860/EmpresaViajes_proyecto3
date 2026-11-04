@@ -46,12 +46,12 @@ public class Piloto extends Persona implements Persistible{
     
     @Override
     public String descripcion(){
-        return getNombre() + "(DPI: " + getDpi() + "Licencia: " + numLicencia + ")";
+        return getNombre() + " (DPI: " + getDpi() + ", Licencia: " + numLicencia + ")";
     }
     
     @Override
     public String aLineaTexto(){    
-        return getDpi() + ", " + getNombre() + ", " + numLicencia + ", " + tipoLicencia + ", " + activo; 
+        return getDpi() + "," + getNombre() + "," + numLicencia + "," + tipoLicencia + "," + activo;
     }
     
     

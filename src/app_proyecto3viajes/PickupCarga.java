@@ -10,42 +10,32 @@ package app_proyecto3viajes;
  */
 public class PickupCarga extends Vehiculo {
 
+    //Flete por quintal (Q)
+    public static final double FLETE_POR_DEFECTO = 15.00;
+
+    private double flete;
+
     public PickupCarga(String placa, int capacidad, String estado, double kilometraje, double kmDesdeServicio, boolean activo) {
+        this(placa, capacidad, estado, kilometraje, kmDesdeServicio, activo, FLETE_POR_DEFECTO);
+    }
+
+    public PickupCarga(String placa, int capacidad, String estado, double kilometraje, double kmDesdeServicio, boolean activo, double flete) {
         super(placa, capacidad, estado, kilometraje, kmDesdeServicio, activo);
+        this.flete = flete;
     }
-    
-    
+
+    public double getFlete() { return flete; }
+    public void setFlete(double flete) { this.flete = flete; }
+
     @Override
-    public double calcularCobro(Ruta ruta, int cantidad){
-        //Definir el costo de flete por quintal
-        double precioPorQuintal = 15.00;
-        
-        //Retornar el precio multiplicado por cantidad de quintales
-        return precioPorQuintal * cantidad;
+    public double calcularCobro(Ruta ruta, int cantidad) {
+        //Flete por quintal multiplicado por la cantidad de quintales
+        return flete * cantidad;
     }
-    
-    //Verificar si es de carga
-    @Override 
-    public boolean esDeCarga(){
+
+    //La pickup transporta carga (la cantidad son quintales)
+    @Override
+    public boolean esDeCarga() {
         return true;
-    }
-    
-    //Contador de kilometros
-    @Override
-    public boolean registrarKilometros(double km){
-        setKilometraje(getKilometraje() + km);
-        setKmDesdeServicio(getKmDesdeServicio() + km);
-        
-        if(getKmDesdeServicio() >= 5000.0){
-            setEstado("En Mantenimiento");
-            return true;
-        }
-        return false;
-    }
-    
-    //Formato del texto en archivo
-    @Override
-    public String aLineaTexto() {
-        return "PICKUP," + getPlaca() + "," + getCapacidad() + "," + getEstado() + "," + getKilometraje() + "," + getKmDesdeServicio() + "," + isActivo();
     }
 }

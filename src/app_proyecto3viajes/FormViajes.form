@@ -135,11 +135,13 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                  <Component id="btnRegistrarRuta" min="-2" pref="87" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="btnRegistrarRuta" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="btnActualizarRuta" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnDarBajaRuta" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -174,6 +176,7 @@
                           <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnRegistrarRuta" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnActualizarRuta" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnDarBajaRuta" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="204" max="32767" attributes="0"/>
@@ -271,6 +274,11 @@
                 <Component class="javax.swing.JButton" name="btnDarBajaRuta">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Dar De Baja"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnActualizarRuta">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Actualizar"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -414,6 +422,11 @@
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jDateChooser1" alignment="1" max="32767" attributes="0"/>
                                           <Component id="timePicker1" alignment="1" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="lblCantidad" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtCantidad" pref="72" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -450,6 +463,11 @@
                           <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="timePicker1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="241" max="32767" attributes="0"/>
@@ -527,6 +545,13 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="REGISTRO DE VIAJES"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblCantidad">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cantidad:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtCantidad">
                 </Component>
               </SubComponents>
             </Container>

@@ -9,6 +9,10 @@ package app_proyecto3viajes;
  * @author angls
  */
 public abstract class Vehiculo implements Persistible {
+    //Estados válidos de un vehículo
+    public static final String ESTADO_ACTIVO = "Activo";
+    public static final String ESTADO_MANTENIMIENTO = "En Mantenimiento";
+
     //Atributos privados
     private String placa;
     private int capacidad;
@@ -45,9 +49,32 @@ public abstract class Vehiculo implements Persistible {
     public boolean isActivo() { return activo; }
     public void setActivo(boolean activo) { this.activo = activo; }
 
-    //Métodos que define lo que se hace con todo vehículo
+    //Métodos que cada tipo de vehículo debe definir
     public abstract double calcularCobro(Ruta ruta, int cantidad);
     public abstract boolean esDeCarga();
-    public abstract boolean registrarKilometros(double km);
-    // aLineaTexto() viene de Persistible y lo implementa cada hijo
+
+    //Acumula los kilómetros recorridos (comportamiento común a todo vehículo).
+    //Retorna true si el vehículo alcanzó el kilometraje de servicio y pasa a mantenimiento.
+    public boolean registrarKilometros(double km) {
+        kilometraje += km;
+        kmDesdeServicio += km;
+
+        if (kmDesdeServicio >= Empresa.KM_MANTENIMIENTO) {
+            estado = ESTADO_MANTENIMIENTO;
+            return true;
+        }
+        return false;
+    }
+
+    //Nombre del tipo de vehículo (Bus, Microbus, PickupCarga)
+    public String getTipo() {
+        return getClass().getSimpleName();
+    }
+
+    //Formato para guardar el vehículo en archivo de texto
+    @Override
+    public String aLineaTexto() {
+        return getTipo().toUpperCase() + "," + placa + "," + capacidad + "," + estado + ","
+                + kilometraje + "," + kmDesdeServicio + "," + activo;
+    }
 }

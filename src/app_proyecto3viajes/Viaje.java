@@ -91,9 +91,14 @@ public class Viaje implements Serializable {
         this.cobro = cobro;
     }
     
-    //Validación por conflicots de hora y fecha
-    public boolean chocaCon(LocalDate otraFecha, LocalTime otraHora){
-        //Retorna true si hay conflicto
-        return this.fecha.equals(otraFecha) && this.hora.equals(otraHora);
+    //Validación de conflictos: otro viaje choca con éste si es a la misma fecha y hora
+    //y comparte el vehículo o el piloto. Retorna true si hay conflicto.
+    public boolean chocaCon(Viaje otro) {
+        if (!this.fecha.equals(otro.fecha) || !this.hora.equals(otro.hora)) {
+            return false;
+        }
+        boolean mismoVehiculo = this.vehiculo.getPlaca().equalsIgnoreCase(otro.vehiculo.getPlaca());
+        boolean mismoPiloto = this.piloto.getDpi().equalsIgnoreCase(otro.piloto.getDpi());
+        return mismoVehiculo || mismoPiloto;
     }
 }
