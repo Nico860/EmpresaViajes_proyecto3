@@ -34,10 +34,9 @@ public class FormEmpresa extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtPiloto = new javax.swing.JLabel();
         lblRuta = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
+        txtVehiculo = new javax.swing.JLabel();
         lblVehiculo = new javax.swing.JComboBox<>();
         lblPiloto = new javax.swing.JComboBox<>();
-        jCalendar1 = new com.toedter.calendar.JCalendar();
         jLabel15 = new javax.swing.JLabel();
         btnRegistrarViaje = new javax.swing.JButton();
         btnEliminarViaje = new javax.swing.JButton();
@@ -118,8 +117,8 @@ public class FormEmpresa extends javax.swing.JFrame {
         lblRuta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         lblRuta.addActionListener(this::lblRutaActionPerformed);
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Vehículo:");
+        txtVehiculo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        txtVehiculo.setText("Vehículo:");
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel15.setText("REGISTRO DE VIAJES");
@@ -135,9 +134,6 @@ public class FormEmpresa extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(btnRegistrarViaje)
@@ -150,7 +146,7 @@ public class FormEmpresa extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtVehiculo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblRuta, 0, 188, Short.MAX_VALUE)
@@ -176,11 +172,9 @@ public class FormEmpresa extends javax.swing.JFrame {
                     .addComponent(lblPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(txtVehiculo)
                     .addComponent(lblVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(201, 201, 201)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrarViaje)
                     .addComponent(btnEliminarViaje))
@@ -859,7 +853,6 @@ public class FormEmpresa extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;
@@ -873,7 +866,6 @@ public class FormEmpresa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -921,5 +913,6 @@ public class FormEmpresa extends javax.swing.JFrame {
     private javax.swing.JTextField txtKilometros;
     private javax.swing.JLabel txtPiloto;
     private javax.swing.JTextField txtTarifaBase;
+    private javax.swing.JLabel txtVehiculo;
     // End of variables declaration//GEN-END:variables
 }
