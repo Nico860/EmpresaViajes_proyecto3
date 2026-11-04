@@ -15,7 +15,7 @@ public class App_proyecto3Viajes {
      */
     
     public static void main(String[] args) {
-        FormEmpresa fp = new FormEmpresa();
+        FormViajes fp = new FormViajes();
         fp.setVisible(true);
     }
     
