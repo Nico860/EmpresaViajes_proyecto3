@@ -19,6 +19,7 @@ public class FormViajes extends javax.swing.JFrame {
     public FormViajes() {
         initComponents();
         configurarFormulario();
+        cargarDatos();   //RF-14: recupera los datos guardados al iniciar
     }
 
     /**
@@ -61,6 +62,8 @@ public class FormViajes extends javax.swing.JFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         timePicker1 = new com.github.lgooddatepicker.components.TimePicker();
         jLabel15 = new javax.swing.JLabel();
+        lblTipoViaje = new javax.swing.JLabel();
+        cbxTipoViaje = new javax.swing.JComboBox<>();
         lblCantidad = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
         btnActualizar = new javax.swing.JButton();
@@ -115,39 +118,42 @@ public class FormViajes extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         btnEliminarVehiculo = new javax.swing.JButton();
+        btnServicioVehiculo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 153));
+
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel17.setText("GESTOR DE RUTAS");
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        lblOrigen.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblOrigen.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblOrigen.setText("Origen:");
+        lblOrigen.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cobán", "San Pedro Carchá", "San Cristóbal Verapaz", "Tactic" }));
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cobán", "San Pedro Carchá", "San Cristóbal Verapaz", "Tactic" }));
 
-        lblDestino.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDestino.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDestino.setText("Destino:");
+        lblDestino.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        lblKilometros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblKilometros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblKilometros.setText("Kilómetros:");
+        lblKilometros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        lblTaribaBase.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTaribaBase.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTaribaBase.setText("Tarifa Base:");
+        lblTaribaBase.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         btnRegistrarRuta.setText("Registrar");
         btnRegistrarRuta.addActionListener(this::btnRegistrarRutaActionPerformed);
 
-        btnDarBajaRuta.setText("Dar De Baja");
+        btnDarBajaRuta.setText("Eliminar");
 
         btnActualizarRuta.setText("Actualizar");
 
@@ -220,8 +226,8 @@ public class FormViajes extends javax.swing.JFrame {
                 .addContainerGap(204, Short.MAX_VALUE))
         );
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setText("HISTORIAL DE RUTAS");
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -272,10 +278,12 @@ public class FormViajes extends javax.swing.JFrame {
                         .addComponent(jLabel18)
                         .addGap(26, 26, 26)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Rutas", jPanel3);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 153));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -293,8 +301,12 @@ public class FormViajes extends javax.swing.JFrame {
 
         jButton1.setText("Agregar");
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel15.setText("REGISTRO DE VIAJES");
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+        lblTipoViaje.setText("Tipo de viaje:");
+
+        cbxTipoViaje.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pasajeros", "Carga" }));
 
         lblCantidad.setText("Cantidad:");
 
@@ -327,6 +339,10 @@ public class FormViajes extends javax.swing.JFrame {
                                 .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(timePicker1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                    .addComponent(lblTipoViaje)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cbxTipoViaje, 0, 72, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                                     .addComponent(lblCantidad)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)))))
@@ -356,6 +372,10 @@ public class FormViajes extends javax.swing.JFrame {
                 .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(timePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTipoViaje)
+                    .addComponent(cbxTipoViaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCantidad)
@@ -393,8 +413,8 @@ public class FormViajes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("REPORTE DE VIAJES");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -436,34 +456,36 @@ public class FormViajes extends javax.swing.JFrame {
                                 .addGap(55, 55, 55)
                                 .addComponent(jButton3))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Viajes", jPanel2);
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 153));
+
         jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel7.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
         jLabel7.setText("DPI:");
+        jLabel7.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
 
-        jLabel8.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jLabel8.setText("Nombre:");
+        jLabel8.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jLabel9.setText("Número de Licencia:");
+        jLabel9.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
 
         jTextField3.addActionListener(this::jTextField3ActionPerformed);
 
-        jLabel6.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jLabel6.setText("Tipo de Licencia:");
+        jLabel6.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
 
-        jRadioButton1.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jRadioButton1.setText("Activo");
+        jRadioButton1.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
 
-        btnAgregarPiloto.setBackground(new java.awt.Color(153, 255, 102));
-        btnAgregarPiloto.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnAgregarPiloto.setText("Agregar");
+        btnAgregarPiloto.setBackground(new java.awt.Color(153, 255, 102));
         btnAgregarPiloto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAgregarPiloto.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -522,7 +544,7 @@ public class FormViajes extends javax.swing.JFrame {
                 .addComponent(jRadioButton1)
                 .addGap(26, 26, 26)
                 .addComponent(btnAgregarPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
@@ -538,46 +560,44 @@ public class FormViajes extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable3);
 
-        btnActualizarPiloto.setBackground(new java.awt.Color(102, 204, 255));
-        btnActualizarPiloto.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnActualizarPiloto.setText("Actualizar Datos");
+        btnActualizarPiloto.setBackground(new java.awt.Color(102, 204, 255));
         btnActualizarPiloto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnActualizarPiloto.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnActualizarPiloto.addActionListener(this::btnActualizarPilotoActionPerformed);
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 51));
-        jButton6.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jButton6.setText("Refrescar");
+        jButton6.setBackground(new java.awt.Color(255, 255, 51));
         jButton6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton6.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
 
-        jButton7.setBackground(new java.awt.Color(255, 51, 51));
-        jButton7.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jButton7.setText("Eliminar");
+        jButton7.setBackground(new java.awt.Color(255, 51, 51));
         jButton7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton7.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addGap(12, 12, 12)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnActualizarPiloto, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
-                .addContainerGap(1311, Short.MAX_VALUE))
+                .addContainerGap(1314, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(btnActualizarPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
@@ -585,10 +605,12 @@ public class FormViajes extends javax.swing.JFrame {
                         .addGap(46, 46, 46)
                         .addComponent(jButton7))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 95, Short.MAX_VALUE))
+                .addGap(0, 194, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pilotos", jPanel6);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 153));
 
         jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -596,8 +618,8 @@ public class FormViajes extends javax.swing.JFrame {
 
         jButton8.setText("Buscar");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Busqueda por Vehiculo");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -641,8 +663,8 @@ public class FormViajes extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(jTable5);
 
-        btnRefrescarReportes.setBackground(new java.awt.Color(255, 255, 153));
         btnRefrescarReportes.setText("Refrescar");
+        btnRefrescarReportes.setBackground(new java.awt.Color(255, 255, 153));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -669,42 +691,44 @@ public class FormViajes extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnRefrescarReportes)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Reportes", jPanel4);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 153));
+
         jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel10.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jLabel10.setText("Placa:");
+        jLabel10.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
 
-        jLabel11.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jLabel11.setText("Capacidad:");
+        jLabel11.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
 
-        jLabel12.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jLabel12.setText("Estado:");
+        jLabel12.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
 
-        jRadioButton2.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jRadioButton2.setText("En mantenimiento");
+        jRadioButton2.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
 
-        jLabel14.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jLabel14.setText("Kilometraje:");
+        jLabel14.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
 
-        jLabel13.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jLabel13.setText("KM's desde servicio:");
+        jLabel13.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
 
-        rbtnActivoVehiculo.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         rbtnActivoVehiculo.setText("Activo");
+        rbtnActivoVehiculo.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
 
+        cbxTipoVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un tipo de vehículo", "Item 2", "Item 3", "Item 4" }));
         cbxTipoVehiculo.setBackground(new java.awt.Color(204, 255, 255));
         cbxTipoVehiculo.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        cbxTipoVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un tipo de vehículo", "Item 2", "Item 3", "Item 4" }));
 
-        btnAgregarVehiculo.setBackground(new java.awt.Color(153, 255, 102));
-        btnAgregarVehiculo.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnAgregarVehiculo.setText("Agregar");
+        btnAgregarVehiculo.setBackground(new java.awt.Color(153, 255, 102));
         btnAgregarVehiculo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAgregarVehiculo.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -722,7 +746,7 @@ public class FormViajes extends javax.swing.JFrame {
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))
+                                .addComponent(jTextField9))
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel9Layout.createSequentialGroup()
@@ -795,15 +819,17 @@ public class FormViajes extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Lista de Vehículos");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jButton4.setText("Actualizar");
 
         jButton5.setText("Refrescar");
 
         btnEliminarVehiculo.setText("Eliminar");
+
+        btnServicioVehiculo.setText("Mantenimiento");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -814,37 +840,41 @@ public class FormViajes extends javax.swing.JFrame {
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEliminarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEliminarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnServicioVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(180, 180, 180)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(1292, Short.MAX_VALUE))
+                .addContainerGap(1289, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addGap(51, 51, 51)
-                        .addComponent(jButton5)
-                        .addGap(50, 50, 50)
-                        .addComponent(btnEliminarVehiculo)))
-                .addGap(53, 53, 53))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addGap(41, 41, 41)
+                                .addComponent(jButton5)
+                                .addGap(37, 37, 37)
+                                .addComponent(btnEliminarVehiculo)
+                                .addGap(36, 36, 36)
+                                .addComponent(btnServicioVehiculo))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Vehículos", jPanel1);
@@ -874,26 +904,7 @@ public class FormViajes extends javax.swing.JFrame {
         actualizarPiloto();
     }//GEN-LAST:event_btnActualizarPilotoActionPerformed
 
-    // =====================================================================
-    // LÓGICA DE LA INTERFAZ
-    // Todo lo que está debajo queda FUERA del código generado por NetBeans,
-    // así el diseñador no lo sobrescribe. Se conecta desde configurarFormulario().
-    //
-    // Guía de nombres del diseñador (los componentes conservan su nombre original):
-    //   Rutas     : jComboBox4 = origen, jComboBox5 = destino, txtKilometros, txtTarifaBase,
-    //               btnRegistrarRuta, btnActualizarRuta, btnDarBajaRuta, jTable4
-    //   Viajes    : lblRuta / lblPiloto / lblVehiculo (son combos), jDateChooser1 = fecha,
-    //               timePicker1 = hora, txtCantidad, jButton1 = Agregar, jButton2 = Refrescar, jTable1
-    //   Pilotos   : jTextField2 = DPI, jTextField1 = nombre, jTextField3 = no. licencia,
-    //               jTextField4 = tipo de licencia, jRadioButton1 = activo,
-    //               btnAgregarPiloto, btnActualizarPiloto, jButton6 = Refrescar, jButton7 = Eliminar, jTable3
-    //   Vehículos : jTextField5 = placa, jTextField6 = capacidad, jRadioButton2 = en mantenimiento,
-    //               jTextField8 = kilometraje, jTextField9 = km desde servicio, rbtnActivoVehiculo,
-    //               cbxTipoVehiculo, btnAgregarVehiculo, jButton4 = Actualizar, jButton5 = Refrescar,
-    //               btnEliminarVehiculo, jTable2
-    //   Reportes  : cbx = combo de vehículos, jButton8 = Buscar, btnRefrescarReportes, jTable5
-    // =====================================================================
-
+    
     private static final java.time.format.DateTimeFormatter FORMATO_FECHA = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final java.time.format.DateTimeFormatter FORMATO_HORA = java.time.format.DateTimeFormatter.ofPattern("HH:mm");
 
@@ -903,7 +914,12 @@ public class FormViajes extends javax.swing.JFrame {
     private final java.util.ArrayList<Ruta> rutasEnCombo = new java.util.ArrayList<>();
     private final java.util.ArrayList<Piloto> pilotosEnCombo = new java.util.ArrayList<>();
     private final java.util.ArrayList<Vehiculo> vehiculosEnCombo = new java.util.ArrayList<>();
-    private final java.util.ArrayList<Vehiculo> vehiculosEnReporte = new java.util.ArrayList<>();
+
+    //Controles del panel de reportes (se construyen en construirPanelReportes)
+    private javax.swing.JPanel panelReportes;
+    private javax.swing.JTable tablaReporteRutas;
+    private com.toedter.calendar.JDateChooser reporteDesde;
+    private com.toedter.calendar.JDateChooser reporteHasta;
 
     private boolean cargandoCombos = false;
 
@@ -915,7 +931,7 @@ public class FormViajes extends javax.swing.JFrame {
         jTable3.setModel(modeloTabla("DPI", "Nombre", "No. Licencia", "Tipo Licencia", "Estado"));
         jTable2.setModel(modeloTabla("Placa", "Capacidad", "Estado", "Kilométraje", "Km's desde servicio", "Tipo Vehículo"));
         jTable1.setModel(modeloTabla("Ruta", "Piloto", "Vehículo", "Fecha - Hora", "Cantidad", "Cobro (Q)", "Estado"));
-        jTable5.setModel(modeloTabla("Placa", "Tipo", "Viajes", "Kilómetros", "Total Recaudado (Q)"));
+        jTable5.setModel(modeloTabla("Placa", "Tipo", "Viajes", "Total cobrado (Q)"));
         for (javax.swing.JTable t : new javax.swing.JTable[]{jTable1, jTable2, jTable3, jTable4, jTable5}) {
             t.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         }
@@ -939,6 +955,8 @@ public class FormViajes extends javax.swing.JFrame {
         jRadioButton1.setSelected(true);
 
         //Viajes
+        cbxTipoViaje.setSelectedIndex(-1);
+        cbxTipoViaje.addActionListener(e -> actualizarEtiquetaCantidad());
         jDateChooser1.setDateFormatString("dd/MM/yyyy");
         jDateChooser1.setToolTipText("Fecha del viaje");
         timePicker1.setToolTipText("Hora del viaje (por ejemplo 08:30)");
@@ -950,10 +968,11 @@ public class FormViajes extends javax.swing.JFrame {
 
         //Botones
         btnActualizarRuta.addActionListener(e -> actualizarRuta());
-        btnDarBajaRuta.addActionListener(e -> darBajaRuta());
+        btnDarBajaRuta.addActionListener(e -> eliminarRuta());
 
         jButton1.addActionListener(e -> registrarViaje());
         jButton2.addActionListener(e -> {
+            limpiarViaje();
             refrescarCombosViaje();
             refrescarViajes();
         });
@@ -964,7 +983,7 @@ public class FormViajes extends javax.swing.JFrame {
             limpiarPiloto();
             refrescarPilotos();
         });
-        jButton7.addActionListener(e -> darBajaPiloto());
+        jButton7.addActionListener(e -> eliminarPiloto());
 
         btnAgregarVehiculo.addActionListener(e -> registrarVehiculo());
         jButton4.addActionListener(e -> actualizarVehiculo());
@@ -972,12 +991,20 @@ public class FormViajes extends javax.swing.JFrame {
             limpiarVehiculo();
             refrescarVehiculos();
         });
-        btnEliminarVehiculo.addActionListener(e -> darBajaVehiculo());
+        btnEliminarVehiculo.addActionListener(e -> eliminarVehiculo());
 
-        jButton8.addActionListener(e -> mostrarReporte());
-        btnRefrescarReportes.addActionListener(e -> {
-            refrescarComboReporte();
-            mostrarReporte();
+        btnServicioVehiculo.addActionListener(e -> registrarServicioVehiculo());
+        btnServicioVehiculo.setToolTipText("Registrar el servicio de mantenimiento del vehículo seleccionado");
+        jButton5.setToolTipText("Limpia los campos y recarga la tabla");
+        jButton6.setToolTipText("Limpia los campos y recarga la tabla");
+
+        construirPanelReportes();
+        //RF-13: al cerrar la ventana se guardan los datos (después se cierra como indica el diseñador)
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                guardarDatos();
+            }
         });
 
         //Al seleccionar una fila se cargan sus datos en el formulario
@@ -989,8 +1016,7 @@ public class FormViajes extends javax.swing.JFrame {
         jTabbedPane1.addChangeListener(e -> {
             refrescarCombosViaje();
             refrescarViajes();
-            refrescarComboReporte();
-            mostrarReporte();
+            mostrarReportes(false);
         });
 
         refrescarTodo();
@@ -1003,13 +1029,8 @@ public class FormViajes extends javax.swing.JFrame {
         refrescarVehiculos();
         refrescarCombosViaje();
         refrescarViajes();
-        refrescarComboReporte();
-        mostrarReporte();
+        mostrarReportes(false);
     }
-
-    // ---------------------------------------------------------------------
-    // Utilidades de interfaz
-    // ---------------------------------------------------------------------
 
     private static javax.swing.table.DefaultTableModel modeloTabla(String... columnas) {
         return new javax.swing.table.DefaultTableModel(columnas, 0) {
@@ -1086,9 +1107,6 @@ public class FormViajes extends javax.swing.JFrame {
         return (i >= 0 && i < lista.size()) ? lista.get(i) : null;
     }
 
-    // ---------------------------------------------------------------------
-    // RF-03  Rutas
-    // ---------------------------------------------------------------------
 
     private void registrarRuta() {
         try {
@@ -1107,43 +1125,98 @@ public class FormViajes extends javax.swing.JFrame {
         }
     }
 
+    //Un texto no puede estar vacío ni contener comas (los archivos de texto se separan por comas)
+    private static String validarTexto(String valor, String campo) {
+        if (valor == null || valor.trim().isEmpty()) {
+            throw new IllegalArgumentException("El campo '" + campo + "' no puede estar vacío.");
+        }
+        if (valor.contains(",")) {
+            throw new IllegalArgumentException("El campo '" + campo + "' no puede contener comas.");
+        }
+        return valor.trim();
+    }
+
+    //Registros seleccionados en las tablas: Actualizar, Eliminar y Mantenimiento trabajan sobre ellos
+    private Ruta rutaSeleccionada() {
+        int fila = jTable4.getSelectedRow();
+        if (fila < 0 || fila >= empresa.getRutas().size()) {
+            throw new IllegalArgumentException("Seleccione una ruta de la tabla.");
+        }
+        return empresa.getRutas().get(fila);
+    }
+
+    private Piloto pilotoSeleccionado() {
+        int fila = jTable3.getSelectedRow();
+        if (fila < 0 || fila >= empresa.getPilotos().size()) {
+            throw new IllegalArgumentException("Seleccione un piloto de la tabla.");
+        }
+        return empresa.getPilotos().get(fila);
+    }
+
+    private Vehiculo vehiculoSeleccionado() {
+        int fila = jTable2.getSelectedRow();
+        if (fila < 0 || fila >= empresa.getVehiculos().size()) {
+            throw new IllegalArgumentException("Seleccione un vehículo de la tabla.");
+        }
+        return empresa.getVehiculos().get(fila);
+    }
+
+    //Actualizar: cambia todos los datos de la ruta seleccionada con lo escrito en el formulario
     private void actualizarRuta() {
         try {
-            String origen = textoCombo(jComboBox4);
-            String destino = textoCombo(jComboBox5);
+            Ruta ruta = rutaSeleccionada();
+            String origen = validarTexto(textoCombo(jComboBox4), "Origen");
+            String destino = validarTexto(textoCombo(jComboBox5), "Destino");
             double km = leerDecimal(txtKilometros.getText(), "Kilómetros");
             double tarifa = leerDecimal(txtTarifaBase.getText(), "Tarifa base");
-
-            empresa.modificarRuta(origen, destino, km, tarifa);
+            if (origen.equalsIgnoreCase(destino)) {
+                throw new IllegalArgumentException("El origen y el destino deben ser distintos.");
+            }
+            if (km <= 0) {
+                throw new IllegalArgumentException("Los kilómetros deben ser un número mayor que cero.");
+            }
+            if (tarifa <= 0) {
+                throw new IllegalArgumentException("La tarifa base debe ser un número mayor que cero.");
+            }
+            Ruta otra = empresa.buscarRuta(origen, destino);
+            if (otra != null && otra != ruta) {
+                throw new IllegalArgumentException("Ya existe la ruta " + origen + " - " + destino + ".");
+            }
+            ruta.setOrigen(origen);
+            ruta.setDestino(destino);
+            ruta.setKilometros(km);
+            ruta.setTarifaBase(tarifa);
+            limpiarRuta();
             refrescarRutas();
             refrescarCombosViaje();
+            refrescarViajes();
             informacion("Ruta " + origen + " - " + destino + " actualizada correctamente.");
         } catch (IllegalArgumentException ex) {
             advertencia(ex.getMessage());
         }
     }
 
-    private void darBajaRuta() {
+    //Eliminar: borra la ruta seleccionada del catálogo (sus viajes ya registrados se conservan)
+    private void eliminarRuta() {
         try {
-            String origen = textoCombo(jComboBox4);
-            String destino = textoCombo(jComboBox5);
-            if (empresa.buscarRuta(origen, destino) == null) {
-                throw new IllegalArgumentException("No existe la ruta " + origen + " - " + destino + ".");
-            }
-            if (!confirmar("¿Dar de baja la ruta " + origen + " - " + destino + "?\nSus viajes registrados se conservan en el reporte.")) {
+            Ruta ruta = rutaSeleccionada();
+            if (!confirmar("¿Eliminar la ruta " + ruta.getOrigen() + " - " + ruta.getDestino() + "?\nLos viajes ya registrados con ella se conservan en el reporte.")) {
                 return;
             }
-            empresa.darBajaRuta(origen, destino);
+            empresa.darBajaRuta(ruta.getOrigen(), ruta.getDestino());
             limpiarRuta();
             refrescarRutas();
             refrescarCombosViaje();
-            informacion("Ruta dada de baja. Ya no se ofrece para nuevos viajes.");
+            refrescarViajes();
+            informacion("Ruta eliminada.");
         } catch (IllegalArgumentException ex) {
             advertencia(ex.getMessage());
         }
     }
 
     private void limpiarRuta() {
+        jComboBox4.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(1);
         txtKilometros.setText("");
         txtTarifaBase.setText("");
         jTable4.clearSelection();
@@ -1170,10 +1243,6 @@ public class FormViajes extends javax.swing.JFrame {
         txtTarifaBase.setText(String.valueOf(r.getTarifaBase()));
     }
 
-    // ---------------------------------------------------------------------
-    // RF-02  Pilotos
-    // ---------------------------------------------------------------------
-
     private void registrarPiloto() {
         try {
             Piloto p = new Piloto(texto(jTextField2), texto(jTextField1), texto(jTextField3), texto(jTextField4),
@@ -1189,38 +1258,51 @@ public class FormViajes extends javax.swing.JFrame {
     }
 
     //Botón "Actualizar Datos": el DPI identifica al piloto; se modifican nombre y licencia
+    //Actualizar: cambia todos los datos del piloto seleccionado con lo escrito en el formulario
     private void actualizarPiloto() {
         try {
-            if (texto(jTextField2).isEmpty()) {
-                throw new IllegalArgumentException("Seleccione un piloto de la tabla o escriba su DPI.");
+            Piloto piloto = pilotoSeleccionado();
+            String dpi = validarTexto(texto(jTextField2), "DPI");
+            String nombre = validarTexto(texto(jTextField1), "Nombre");
+            String licencia = validarTexto(texto(jTextField3), "Número de licencia");
+            String tipo = validarTexto(texto(jTextField4), "Tipo de licencia");
+            Piloto otro = empresa.buscarPiloto(dpi);
+            if (otro != null && otro != piloto) {
+                throw new IllegalArgumentException("Ya existe un piloto con el DPI " + dpi + ".");
             }
-            empresa.modificarPiloto(texto(jTextField2), texto(jTextField1), texto(jTextField3), texto(jTextField4));
+            for (Piloto p : empresa.getPilotos()) {
+                if (p != piloto && p.getNumLicencia().equalsIgnoreCase(licencia)) {
+                    throw new IllegalArgumentException("Ya existe un piloto con el número de licencia " + licencia + ".");
+                }
+            }
+            piloto.setDpi(dpi);
+            piloto.setNombre(nombre);
+            piloto.setNumLicencia(licencia);
+            piloto.setTipoLicencia(tipo);
+            piloto.setActivo(jRadioButton1.isSelected());
+            limpiarPiloto();
             refrescarPilotos();
             refrescarCombosViaje();
-            informacion("Datos del piloto actualizados correctamente.");
+            refrescarViajes();
+            informacion("Piloto " + nombre + " actualizado correctamente.");
         } catch (IllegalArgumentException ex) {
             advertencia(ex.getMessage());
         }
     }
 
-    private void darBajaPiloto() {
+    //Eliminar: borra el piloto seleccionado del catálogo (sus viajes ya registrados se conservan)
+    private void eliminarPiloto() {
         try {
-            String dpi = texto(jTextField2);
-            if (dpi.isEmpty()) {
-                throw new IllegalArgumentException("Seleccione un piloto de la tabla o escriba su DPI.");
-            }
-            Piloto p = empresa.buscarPiloto(dpi);
-            if (p == null) {
-                throw new IllegalArgumentException("No existe un piloto con el DPI " + dpi + ".");
-            }
-            if (!confirmar("¿Dar de baja al piloto " + p.getNombre() + "?\nSus viajes registrados se conservan en el reporte.")) {
+            Piloto piloto = pilotoSeleccionado();
+            if (!confirmar("¿Eliminar al piloto " + piloto.getNombre() + "?\nLos viajes ya registrados con él se conservan en el reporte.")) {
                 return;
             }
-            empresa.darBajaPiloto(dpi);
+            empresa.darBajaPiloto(piloto.getDpi());
             limpiarPiloto();
             refrescarPilotos();
             refrescarCombosViaje();
-            informacion("Piloto dado de baja. Ya no se ofrece para nuevos viajes.");
+            refrescarViajes();
+            informacion("Piloto eliminado.");
         } catch (IllegalArgumentException ex) {
             advertencia(ex.getMessage());
         }
@@ -1257,10 +1339,7 @@ public class FormViajes extends javax.swing.JFrame {
         jRadioButton1.setSelected(p.isActivo());
     }
 
-    // ---------------------------------------------------------------------
-    // RF-01  Vehículos
-    // ---------------------------------------------------------------------
-
+    
     private void registrarVehiculo() {
         try {
             int tipo = cbxTipoVehiculo.getSelectedIndex();
@@ -1275,7 +1354,7 @@ public class FormViajes extends javax.swing.JFrame {
             double km = leerDecimal(jTextField8.getText(), "Kilometraje");
             //Los km desde el último servicio son opcionales: si se dejan vacíos el vehículo es nuevo (0)
             double kmServicio = texto(jTextField9).isEmpty() ? 0.0 : leerDecimal(jTextField9.getText(), "Km's desde servicio");
-            String estado = jRadioButton2.isSelected() ? Vehiculo.ESTADO_MANTENIMIENTO : Vehiculo.ESTADO_ACTIVO;
+            String estado = jRadioButton2.isSelected() ? "En Mantenimiento" : "Activo";
             boolean activo = rbtnActivoVehiculo.isSelected();
 
             Vehiculo v;
@@ -1301,45 +1380,60 @@ public class FormViajes extends javax.swing.JFrame {
     }
 
     //Botón "Actualizar": la placa identifica al vehículo; se modifican capacidad y estado
+    //Actualizar: cambia todos los datos del vehículo seleccionado con lo escrito en el formulario
     private void actualizarVehiculo() {
         try {
-            String placa = texto(jTextField5);
-            if (placa.isEmpty()) {
-                throw new IllegalArgumentException("Seleccione un vehículo de la tabla o escriba su placa.");
+            Vehiculo v = vehiculoSeleccionado();
+            int tipoActual = v instanceof Bus ? 1 : (v instanceof Microbus ? 2 : 3);
+            if (cbxTipoVehiculo.getSelectedIndex() != tipoActual) {
+                throw new IllegalArgumentException("No se puede cambiar el tipo de un vehículo ya registrado.\nElimínelo y regístrelo de nuevo con el tipo correcto.");
             }
-            Vehiculo v = empresa.buscarVehiculo(placa);
-            if (v == null) {
-                throw new IllegalArgumentException("No existe un vehículo con la placa " + placa + ".");
-            }
+            String placa = validarTexto(texto(jTextField5), "Placa").toUpperCase();
             int capacidad = leerEntero(jTextField6.getText(), "Capacidad");
-            empresa.modificarVehiculo(placa, capacidad);
-            empresa.cambiarEstado(v, jRadioButton2.isSelected() ? Vehiculo.ESTADO_MANTENIMIENTO : Vehiculo.ESTADO_ACTIVO);
+            double km = leerDecimal(jTextField8.getText(), "Kilometraje");
+            double kmServicio = texto(jTextField9).isEmpty() ? 0.0 : leerDecimal(jTextField9.getText(), "Km's desde servicio");
+            if (capacidad <= 0) {
+                throw new IllegalArgumentException("La capacidad debe ser un número mayor que cero.");
+            }
+            if (km < 0 || kmServicio < 0) {
+                throw new IllegalArgumentException("Los kilómetros no pueden ser negativos.");
+            }
+            if (kmServicio > km) {
+                throw new IllegalArgumentException("Los kilómetros desde el último servicio no pueden superar el kilometraje total.");
+            }
+            Vehiculo otro = empresa.buscarVehiculo(placa);
+            if (otro != null && otro != v) {
+                throw new IllegalArgumentException("Ya existe un vehículo con la placa " + placa + ".");
+            }
+            empresa.modificarVehiculo(v.getPlaca(), capacidad);
+            empresa.cambiarEstado(v, jRadioButton2.isSelected() ? "En Mantenimiento" : "Activo");
+            v.setPlaca(placa);
+            v.setKilometraje(km);
+            v.setKmDesdeServicio(kmServicio);
+            v.setActivo(rbtnActivoVehiculo.isSelected());
+            limpiarVehiculo();
             refrescarVehiculos();
             refrescarCombosViaje();
+            refrescarViajes();
             informacion("Vehículo " + v.getPlaca() + " actualizado correctamente.");
         } catch (IllegalArgumentException ex) {
             advertencia(ex.getMessage());
         }
     }
 
-    private void darBajaVehiculo() {
+    //Eliminar: borra el vehículo seleccionado del catálogo (sus viajes ya registrados se conservan)
+    private void eliminarVehiculo() {
         try {
-            String placa = texto(jTextField5);
-            if (placa.isEmpty()) {
-                throw new IllegalArgumentException("Seleccione un vehículo de la tabla o escriba su placa.");
-            }
-            Vehiculo v = empresa.buscarVehiculo(placa);
-            if (v == null) {
-                throw new IllegalArgumentException("No existe un vehículo con la placa " + placa + ".");
-            }
-            if (!confirmar("¿Dar de baja el vehículo " + v.getPlaca() + "?\nSus viajes registrados se conservan en el reporte.")) {
+            Vehiculo v = vehiculoSeleccionado();
+            if (!confirmar("¿Eliminar el vehículo " + v.getPlaca() + "?\nLos viajes ya registrados con él se conservan en el reporte.")) {
                 return;
             }
-            empresa.darBajaVehiculo(placa);
+            empresa.darBajaVehiculo(v.getPlaca());
             limpiarVehiculo();
             refrescarVehiculos();
             refrescarCombosViaje();
-            informacion("Vehículo dado de baja. Ya no se ofrece para nuevos viajes.");
+            refrescarViajes();
+            informacion("Vehículo eliminado.");
         } catch (IllegalArgumentException ex) {
             advertencia(ex.getMessage());
         }
@@ -1361,7 +1455,7 @@ public class FormViajes extends javax.swing.JFrame {
         m.setRowCount(0);
         for (Vehiculo v : empresa.getVehiculos()) {
             m.addRow(new Object[]{v.getPlaca(), v.getCapacidad(), v.isActivo() ? v.getEstado() : "Dado de baja",
-                q(v.getKilometraje()), q(v.getKmDesdeServicio()), v.getTipo()});
+                q(v.getKilometraje()), q(v.getKmDesdeServicio()), v.getClass().getSimpleName()});
         }
     }
 
@@ -1375,14 +1469,10 @@ public class FormViajes extends javax.swing.JFrame {
         jTextField6.setText(String.valueOf(v.getCapacidad()));
         jTextField8.setText(String.valueOf(v.getKilometraje()));
         jTextField9.setText(String.valueOf(v.getKmDesdeServicio()));
-        jRadioButton2.setSelected(Vehiculo.ESTADO_MANTENIMIENTO.equalsIgnoreCase(v.getEstado()));
+        jRadioButton2.setSelected("En Mantenimiento".equalsIgnoreCase(v.getEstado()));
         rbtnActivoVehiculo.setSelected(v.isActivo());
         cbxTipoVehiculo.setSelectedIndex(v instanceof Bus ? 1 : (v instanceof Microbus ? 2 : 3));
     }
-
-    // ---------------------------------------------------------------------
-    // RF-05  Registro de viajes y reporte de viajes (RF-04)
-    // ---------------------------------------------------------------------
 
     private void registrarViaje() {
         try {
@@ -1398,6 +1488,11 @@ public class FormViajes extends javax.swing.JFrame {
             if (vehiculo == null) {
                 throw new IllegalArgumentException("Debe seleccionar un vehículo.");
             }
+            int tipoViaje = cbxTipoViaje.getSelectedIndex();
+            if (tipoViaje < 0) {
+                throw new IllegalArgumentException("Debe seleccionar el tipo de viaje (pasajeros o carga).");
+            }
+            boolean viajeDeCarga = tipoViaje == 1;
 
             java.util.Date fechaElegida = jDateChooser1.getDate();
             if (fechaElegida == null) {
@@ -1409,25 +1504,33 @@ public class FormViajes extends javax.swing.JFrame {
                 throw new IllegalArgumentException("Debe indicar la hora del viaje.");
             }
 
-            String unidad = vehiculo.esDeCarga() ? "quintales" : "pasajeros";
+            String unidad = viajeDeCarga ? "quintales" : "pasajeros";
             int cantidad = leerEntero(txtCantidad.getText(), "Cantidad de " + unidad);
+
+            //RF-07: una pickup solo registra viajes de carga; un bus o microbús, solo de pasajeros
+            if (vehiculo.esDeCarga() && !viajeDeCarga) {
+                throw new IllegalArgumentException("Una pickup solo puede registrar viajes de carga (quintales), no de pasajeros.");
+            }
+            if (!vehiculo.esDeCarga() && viajeDeCarga) {
+                throw new IllegalArgumentException("Un bus o microbús solo puede registrar viajes de pasajeros, no de carga.");
+            }
 
             Viaje viaje = empresa.registrarViaje(ruta, vehiculo, piloto, fecha, hora, cantidad);
 
             //El cobro lo calculó el vehículo según su tipo; se muestra al usuario
             String mensaje = "¡Viaje registrado con éxito!\n"
                     + "Ruta: " + ruta.getOrigen() + " - " + ruta.getDestino() + "\n"
-                    + "Vehículo: " + vehiculo.getPlaca() + " (" + vehiculo.getTipo() + ")\n"
+                    + "Vehículo: " + vehiculo.getPlaca() + " (" + vehiculo.getClass().getSimpleName() + ")\n"
                     + "Cantidad: " + cantidad + " " + unidad + "\n"
                     + "Cobro total: Q " + q(viaje.getCobro());
-            if (Vehiculo.ESTADO_MANTENIMIENTO.equals(vehiculo.getEstado())) {
-                mensaje += "\n\nAVISO: el vehículo alcanzó los " + String.format("%,.0f", Empresa.KM_MANTENIMIENTO)
-                        + " km desde su último servicio y pasó a estado 'En Mantenimiento'.";
+            if ("En Mantenimiento".equals(vehiculo.getEstado())) {
+                mensaje += "\n\nAVISO: el vehículo superó los " + String.format(java.util.Locale.US, "%,.0f", Empresa.KM_MANTENIMIENTO)
+                        + " km desde su último servicio y necesita mantenimiento. Pasó a estado 'En Mantenimiento'.";
             }
-            txtCantidad.setText("");
             refrescarCombosViaje();
             refrescarViajes();
             refrescarVehiculos();
+            limpiarViaje();
             informacion(mensaje);
         } catch (IllegalArgumentException ex) {
             advertencia(ex.getMessage());
@@ -1461,13 +1564,13 @@ public class FormViajes extends javax.swing.JFrame {
             //Un vehículo 'En Mantenimiento' tampoco puede salir a viajar
             vehiculosEnCombo.clear();
             for (Vehiculo v : empresa.getVehiculosActivos()) {
-                if (!Vehiculo.ESTADO_MANTENIMIENTO.equalsIgnoreCase(v.getEstado())) {
+                if (!"En Mantenimiento".equalsIgnoreCase(v.getEstado())) {
                     vehiculosEnCombo.add(v);
                 }
             }
             lblVehiculo.removeAllItems();
             for (Vehiculo v : vehiculosEnCombo) {
-                lblVehiculo.addItem(v.getPlaca() + " - " + v.getTipo() + " (cap. " + v.getCapacidad() + ")");
+                lblVehiculo.addItem(v.getPlaca() + " - " + v.getClass().getSimpleName() + " (cap. " + v.getCapacidad() + ")");
             }
             lblVehiculo.setSelectedIndex(vehiculosEnCombo.indexOf(vehiculoSel));
         } finally {
@@ -1481,16 +1584,34 @@ public class FormViajes extends javax.swing.JFrame {
         if (cargandoCombos) {
             return;
         }
-        Vehiculo v = seleccionado(vehiculosEnCombo, lblVehiculo);
-        lblCantidad.setText(v == null ? "Cantidad:" : (v.esDeCarga() ? "Quintales:" : "Pasajeros:"));
+        int tipo = cbxTipoViaje.getSelectedIndex();
+        lblCantidad.setText(tipo < 0 ? "Cantidad:" : (tipo == 1 ? "Quintales:" : "Pasajeros:"));
+    }
+    
+    private void limpiarViaje() {
+        cargandoCombos = true;
+        try {
+            lblRuta.setSelectedIndex(-1);
+            lblPiloto.setSelectedIndex(-1);
+            lblVehiculo.setSelectedIndex(-1);
+            cbxTipoViaje.setSelectedIndex(-1);
+        } finally {
+            cargandoCombos = false;
+        }
+        jDateChooser1.setDate(null);
+        timePicker1.setTime(null);
+        txtCantidad.setText("");
+        actualizarEtiquetaCantidad();
     }
 
-    //RF-04: el reporte lista TODOS los viajes, aunque su ruta, vehículo o piloto ya estén dados de baja
     private void refrescarViajes() {
         javax.swing.table.DefaultTableModel m = (javax.swing.table.DefaultTableModel) jTable1.getModel();
         m.setRowCount(0);
         for (Viaje v : empresa.getViajes()) {
-            boolean vigente = v.getRuta().isActiva() && v.getVehiculo().isActivo() && v.getPiloto().isActivo();
+            //"vigente" = ruta, vehículo y piloto siguen en el catálogo y activos
+            boolean vigente = empresa.getRutas().contains(v.getRuta()) && v.getRuta().isActiva()
+                    && empresa.getVehiculos().contains(v.getVehiculo()) && v.getVehiculo().isActivo()
+                    && empresa.getPilotos().contains(v.getPiloto()) && v.getPiloto().isActivo();
             m.addRow(new Object[]{
                 v.getRuta().getOrigen() + " - " + v.getRuta().getDestino(),
                 v.getPiloto().getNombre(),
@@ -1498,57 +1619,314 @@ public class FormViajes extends javax.swing.JFrame {
                 v.getFecha().format(FORMATO_FECHA) + " " + v.getHora().format(FORMATO_HORA),
                 v.getCantidad(),
                 q(v.getCobro()),
-                vigente ? "Registrado" : "Registrado (recurso dado de baja)"
+                vigente ? "Registrado" : "Registrado (recurso eliminado o inactivo)"
             });
         }
     }
+    
+    //Botón "Mantenimiento": pide fecha y descripción, reinicia el contador de km y deja el vehículo Activo
+    private void registrarServicioVehiculo() {
+        try {
+            Vehiculo v = vehiculoSeleccionado();
 
-    // ---------------------------------------------------------------------
-    // Reportes por vehículo
-    // ---------------------------------------------------------------------
+            com.toedter.calendar.JDateChooser fecha = new com.toedter.calendar.JDateChooser(new java.util.Date());
+            fecha.setDateFormatString("dd/MM/yyyy");
+            javax.swing.JTextField descripcion = new javax.swing.JTextField(26);
+            javax.swing.JPanel panel = new javax.swing.JPanel(new java.awt.GridLayout(0, 1, 0, 4));
+            panel.add(new javax.swing.JLabel("Vehículo " + v.getPlaca() + " - estado: " + v.getEstado()
+                    + " - km desde el último servicio: " + q(v.getKmDesdeServicio())));
+            panel.add(new javax.swing.JLabel("Fecha del servicio:"));
+            panel.add(fecha);
+            panel.add(new javax.swing.JLabel("Descripción del servicio:"));
+            panel.add(descripcion);
 
-    private void refrescarComboReporte() {
-        Vehiculo anterior = vehiculoFiltrado();
-        vehiculosEnReporte.clear();
-        cbx.removeAllItems();
-        cbx.addItem("Todos los vehículos");
-        //Se incluyen también los vehículos dados de baja: sus viajes siguen en el reporte
-        for (Vehiculo v : empresa.getVehiculos()) {
-            vehiculosEnReporte.add(v);
-            cbx.addItem(v.getPlaca() + " - " + v.getTipo() + (v.isActivo() ? "" : " (de baja)"));
-        }
-        int pos = vehiculosEnReporte.indexOf(anterior);
-        cbx.setSelectedIndex(pos < 0 ? 0 : pos + 1);
-    }
-
-    //Vehículo elegido en el combo del reporte (null = "Todos los vehículos"; el índice 0 es ese texto)
-    private Vehiculo vehiculoFiltrado() {
-        int pos = cbx.getSelectedIndex();
-        return (pos > 0 && pos - 1 < vehiculosEnReporte.size()) ? vehiculosEnReporte.get(pos - 1) : null;
-    }
-
-    private void mostrarReporte() {
-        Vehiculo filtro = vehiculoFiltrado();
-
-        javax.swing.table.DefaultTableModel m = (javax.swing.table.DefaultTableModel) jTable5.getModel();
-        m.setRowCount(0);
-        int totalViajes = 0;
-        double totalKm = 0;
-        double totalCobrado = 0;
-        for (Object[] fila : empresa.reportePorVehiculo(java.time.LocalDate.MIN, java.time.LocalDate.MAX)) {
-            if (filtro != null && !filtro.getPlaca().equals(fila[0])) {
-                continue;
+            int respuesta = javax.swing.JOptionPane.showConfirmDialog(this, panel, "Registrar servicio de mantenimiento",
+                    javax.swing.JOptionPane.OK_CANCEL_OPTION, javax.swing.JOptionPane.PLAIN_MESSAGE);
+            if (respuesta != javax.swing.JOptionPane.OK_OPTION) {
+                return;
             }
-            m.addRow(new Object[]{fila[0], fila[1], fila[2], q((Double) fila[3]), q((Double) fila[4])});
-            totalViajes += (Integer) fila[2];
-            totalKm += (Double) fila[3];
-            totalCobrado += (Double) fila[4];
-        }
-        if (m.getRowCount() > 0) {
-            m.addRow(new Object[]{"TOTAL", "", totalViajes, q(totalKm), q(totalCobrado)});
+            java.util.Date elegida = fecha.getDate();
+            java.time.LocalDate fechaServicio = elegida == null ? null
+                    : elegida.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+
+            empresa.registrarMantenimiento(v, fechaServicio, descripcion.getText());
+            limpiarVehiculo();
+            refrescarVehiculos();
+            refrescarCombosViaje();
+            informacion("Servicio registrado. El vehículo " + v.getPlaca() + " vuelve a estar Activo y su contador de km desde el último servicio quedó en 0.");
+        } catch (IllegalArgumentException ex) {
+            advertencia(ex.getMessage());
         }
     }
 
+    
+    //Reemplaza el contenido de la pestaña "Reportes" por un panel con filtro desde-hasta y dos tablas.
+    //(Se arma en código para no depender del diseñador; la pestaña conserva su título.)
+    private void construirPanelReportes() {
+        reporteDesde = new com.toedter.calendar.JDateChooser();
+        reporteHasta = new com.toedter.calendar.JDateChooser();
+        for (com.toedter.calendar.JDateChooser dc : new com.toedter.calendar.JDateChooser[]{reporteDesde, reporteHasta}) {
+            dc.setDateFormatString("dd/MM/yyyy");
+            dc.setPreferredSize(new java.awt.Dimension(130, 26));
+        }
+        reporteDesde.setToolTipText("Fecha inicial (vacío = sin límite)");
+        reporteHasta.setToolTipText("Fecha final (vacío = sin límite)");
+
+        javax.swing.JButton generar = new javax.swing.JButton("Generar reportes");
+        generar.addActionListener(e -> mostrarReportes(true));
+        javax.swing.JButton quitarFiltro = new javax.swing.JButton("Quitar filtro");
+        quitarFiltro.addActionListener(e -> {
+            reporteDesde.setDate(null);
+            reporteHasta.setDate(null);
+            mostrarReportes(true);
+        });
+
+        javax.swing.JPanel filtros = new javax.swing.JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 8));
+        filtros.add(new javax.swing.JLabel("Desde:"));
+        filtros.add(reporteDesde);
+        filtros.add(new javax.swing.JLabel("Hasta:"));
+        filtros.add(reporteHasta);
+        filtros.add(generar);
+        filtros.add(quitarFiltro);
+
+        tablaReporteRutas = new javax.swing.JTable(modeloTabla("Ruta", "Viajes", "Total cobrado (Q)"));
+        javax.swing.JScrollPane scrollRutas = new javax.swing.JScrollPane(tablaReporteRutas);
+        scrollRutas.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingresos por ruta"));
+        javax.swing.JScrollPane scrollVehiculos = new javax.swing.JScrollPane(jTable5);
+        scrollVehiculos.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingresos por vehículo"));
+
+        javax.swing.JPanel tablas = new javax.swing.JPanel(new java.awt.GridLayout(1, 2, 10, 0));
+        tablas.add(scrollRutas);
+        tablas.add(scrollVehiculos);
+
+        panelReportes = new javax.swing.JPanel(new java.awt.BorderLayout(0, 5));
+        panelReportes.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panelReportes.add(filtros, java.awt.BorderLayout.NORTH);
+        panelReportes.add(tablas, java.awt.BorderLayout.CENTER);
+        panelReportes.setPreferredSize(jPanel4.getPreferredSize());
+
+        jTabbedPane1.setComponentAt(jTabbedPane1.indexOfComponent(jPanel4), panelReportes);
+    }
+
+    private static java.time.LocalDate aFecha(java.util.Date fecha) {
+        return fecha == null ? null : fecha.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+    }
+
+    //Llena ambas tablas con el rango elegido (fecha vacía = sin límite). Incluye los viajes de lo eliminado o inactivo (RF-04).
+    private void mostrarReportes(boolean avisar) {
+        java.time.LocalDate desde = aFecha(reporteDesde.getDate());
+        java.time.LocalDate hasta = aFecha(reporteHasta.getDate());
+        if (desde != null && hasta != null && desde.isAfter(hasta)) {
+            if (avisar) {
+                advertencia("La fecha 'Desde' no puede ser posterior a la fecha 'Hasta'.");
+            }
+            return;
+        }
+        java.time.LocalDate d = desde == null ? java.time.LocalDate.MIN : desde;
+        java.time.LocalDate h = hasta == null ? java.time.LocalDate.MAX : hasta;
+        double totalGeneral = empresa.totalIngresos(d, h);
+
+        javax.swing.table.DefaultTableModel mr = (javax.swing.table.DefaultTableModel) tablaReporteRutas.getModel();
+        mr.setRowCount(0);
+        int viajesRutas = 0;
+        for (Object[] fila : empresa.reportePorRuta(d, h)) {
+            mr.addRow(new Object[]{fila[0], fila[1], q((Double) fila[2])});
+            viajesRutas += (Integer) fila[1];
+        }
+        if (mr.getRowCount() > 0) {
+            mr.addRow(new Object[]{"TOTAL GENERAL", viajesRutas, q(totalGeneral)});
+        }
+
+        javax.swing.table.DefaultTableModel mv = (javax.swing.table.DefaultTableModel) jTable5.getModel();
+        mv.setRowCount(0);
+        int viajesVehiculos = 0;
+        for (Object[] fila : empresa.reportePorVehiculo(d, h)) {
+            mv.addRow(new Object[]{fila[0], fila[1], fila[2], q((Double) fila[3])});
+            viajesVehiculos += (Integer) fila[2];
+        }
+        if (mv.getRowCount() > 0) {
+            mv.addRow(new Object[]{"TOTAL GENERAL", "", viajesVehiculos, q(totalGeneral)});
+        }
+    }
+
+    
+    private final java.nio.file.Path carpetaDatos = java.nio.file.Paths.get(System.getProperty("empresa.datos", "datos"));
+
+    private void guardarDatos() {
+        try {
+            java.nio.file.Files.createDirectories(carpetaDatos);
+            escribirTexto("rutas.txt", empresa.getRutas());
+            escribirTexto("pilotos.txt", empresa.getPilotos());
+            escribirTexto("vehiculos.txt", empresa.getVehiculos());
+            escribirTexto("mantenimientos.txt", empresa.getMantenimientos());
+            //Cada viaje se guarda completo (con su ruta, vehículo y piloto): así el historial sobrevive
+            //aunque después se elimine alguno de ellos del catálogo
+            try (java.io.ObjectOutputStream out = new java.io.ObjectOutputStream(new java.io.BufferedOutputStream(
+                    java.nio.file.Files.newOutputStream(carpetaDatos.resolve("viajes.dat"))))) {
+                out.writeObject(new java.util.ArrayList<>(empresa.getViajes()));
+            }
+        } catch (java.io.IOException | RuntimeException ex) {
+            advertencia("No se pudieron guardar los datos: " + ex.getMessage());
+        }
+    }
+
+    private void escribirTexto(String nombre, java.util.List<? extends Persistible> registros) throws java.io.IOException {
+        java.util.List<String> lineas = new java.util.ArrayList<>();
+        for (Persistible p : registros) {
+            lineas.add(p.aLineaTexto());
+        }
+        java.nio.file.Files.write(carpetaDatos.resolve(nombre), lineas, java.nio.charset.StandardCharsets.UTF_8);
+    }
+    
+    private void cargarDatos() {
+        java.util.List<String> avisos = new java.util.ArrayList<>();
+
+        //Se cargan primero los catálogos y luego lo que depende de ellos
+        java.util.List<String> lineas = leerLineas("rutas.txt", "rutas", avisos);
+        if (lineas != null) {   //si no existe se conservan las rutas por defecto (RF-03)
+            empresa.getRutas().clear();
+            for (int i = 0; i < lineas.size(); i++) {
+                try {
+                    String[] p = lineas.get(i).split(",", -1);
+                    empresa.getRutas().add(new Ruta(p[0], p[1], Double.parseDouble(p[2]), Double.parseDouble(p[3]), leerBooleano(p[4])));
+                } catch (RuntimeException ex) {
+                    avisos.add("rutas.txt, línea " + (i + 1) + " omitida (dato dañado).");
+                }
+            }
+        }
+
+        lineas = leerLineas("pilotos.txt", "pilotos", avisos);
+        if (lineas != null) {
+            empresa.getPilotos().clear();
+            for (int i = 0; i < lineas.size(); i++) {
+                try {
+                    String[] p = lineas.get(i).split(",", -1);
+                    empresa.getPilotos().add(new Piloto(p[0], p[1], p[2], p[3], leerBooleano(p[4])));
+                } catch (RuntimeException ex) {
+                    avisos.add("pilotos.txt, línea " + (i + 1) + " omitida (dato dañado).");
+                }
+            }
+        }
+
+        lineas = leerLineas("vehiculos.txt", "vehículos", avisos);
+        if (lineas != null) {
+            empresa.getVehiculos().clear();
+            for (int i = 0; i < lineas.size(); i++) {
+                try {
+                    String[] p = lineas.get(i).split(",", -1);
+                    int capacidad = Integer.parseInt(p[2]);
+                    double km = Double.parseDouble(p[4]);
+                    double kmServicio = Double.parseDouble(p[5]);
+                    boolean activo = leerBooleano(p[6]);
+                    Vehiculo v;
+                    switch (p[0]) {
+                        case "BUS":
+                            v = new Bus(p[1], capacidad, p[3], km, kmServicio, activo);
+                            break;
+                        case "MICROBUS":
+                            v = new Microbus(p[1], capacidad, p[3], km, kmServicio, activo);
+                            break;
+                        case "PICKUPCARGA":
+                            v = new PickupCarga(p[1], capacidad, p[3], km, kmServicio, activo);
+                            break;
+                        default:
+                            throw new IllegalArgumentException("tipo desconocido");
+                    }
+                    empresa.getVehiculos().add(v);
+                } catch (RuntimeException ex) {
+                    avisos.add("vehiculos.txt, línea " + (i + 1) + " omitida (dato dañado).");
+                }
+            }
+        }
+
+        lineas = leerLineas("mantenimientos.txt", "servicios de mantenimiento", avisos);
+        if (lineas != null) {
+            empresa.getMantenimientos().clear();
+            for (int i = 0; i < lineas.size(); i++) {
+                try {
+                    String[] p = lineas.get(i).split(",", 3);
+                    Vehiculo v = empresa.buscarVehiculo(p[1]);
+                    if (v == null) {
+                        throw new IllegalArgumentException("vehículo inexistente");
+                    }
+                    empresa.getMantenimientos().add(new ServicioMantenimiento(java.time.LocalDate.parse(p[0]), p[2], v));
+                } catch (RuntimeException ex) {
+                    avisos.add("mantenimientos.txt, línea " + (i + 1) + " omitida (dato dañado).");
+                }
+            }
+        }
+
+        cargarViajes(avisos);
+
+        refrescarTodo();
+        if (!avisos.isEmpty()) {
+            informacion("Carga de datos:\n- " + String.join("\n- ", avisos));
+        }
+    }
+
+    //Lee un archivo de texto; devuelve null (y agrega un aviso) si no existe o no se puede leer
+    private java.util.List<String> leerLineas(String nombre, String queDatos, java.util.List<String> avisos) {
+        java.nio.file.Path archivo = carpetaDatos.resolve(nombre);
+        if (!java.nio.file.Files.exists(archivo)) {
+            avisos.add("No se encontró " + nombre + ": se inicia sin " + queDatos + " guardados.");
+            return null;
+        }
+        try {
+            java.util.List<String> lineas = new java.util.ArrayList<>();
+            for (String linea : java.nio.file.Files.readAllLines(archivo, java.nio.charset.StandardCharsets.UTF_8)) {
+                if (!linea.trim().isEmpty()) {
+                    lineas.add(linea);
+                }
+            }
+            return lineas;
+        } catch (java.io.IOException | RuntimeException ex) {
+            avisos.add("No se pudo leer " + nombre + ": se inicia sin " + queDatos + " guardados.");
+            return null;
+        }
+    }
+
+    private static boolean leerBooleano(String texto) {
+        if (!texto.equals("true") && !texto.equals("false")) {
+            throw new IllegalArgumentException("valor lógico no válido");
+        }
+        return Boolean.parseBoolean(texto);
+    }
+
+    private void cargarViajes(java.util.List<String> avisos) {
+        java.nio.file.Path archivo = carpetaDatos.resolve("viajes.dat");
+        if (!java.nio.file.Files.exists(archivo)) {
+            avisos.add("No se encontró viajes.dat: se inicia sin viajes guardados.");
+            return;
+        }
+        java.util.List<Viaje> nuevos;
+        try (java.io.ObjectInputStream in = new java.io.ObjectInputStream(new java.io.BufferedInputStream(
+                java.nio.file.Files.newInputStream(archivo)))) {
+            @SuppressWarnings("unchecked")
+            java.util.List<Viaje> guardados = (java.util.List<Viaje>) in.readObject();
+            nuevos = guardados;
+        } catch (java.io.IOException | ClassNotFoundException | RuntimeException ex) {
+            avisos.add("No se pudo leer viajes.dat: se inicia sin viajes guardados.");
+            return;
+        }
+        //Si la ruta, el vehículo o el piloto siguen en el catálogo, el viaje usa ese mismo objeto;
+        //si fueron eliminados, el viaje conserva la copia que se guardó con él
+        for (Viaje v : nuevos) {
+            Ruta r = empresa.buscarRuta(v.getRuta().getOrigen(), v.getRuta().getDestino());
+            Vehiculo ve = empresa.buscarVehiculo(v.getVehiculo().getPlaca());
+            Piloto p = empresa.buscarPiloto(v.getPiloto().getDpi());
+            if (r != null) {
+                v.setRuta(r);
+            }
+            if (ve != null) {
+                v.setVehiculo(ve);
+            }
+            if (p != null) {
+                v.setPiloto(p);
+            }
+        }
+        empresa.getViajes().clear();
+        empresa.getViajes().addAll(nuevos);
+    }
 
     /**
      * @param args the command line arguments
@@ -1585,8 +1963,10 @@ public class FormViajes extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarVehiculo;
     private javax.swing.JButton btnRefrescarReportes;
     private javax.swing.JButton btnRegistrarRuta;
+    private javax.swing.JButton btnServicioVehiculo;
     private javax.swing.JComboBox<String> cbx;
     private javax.swing.JComboBox<String> cbxTipoVehiculo;
+    private javax.swing.JComboBox<String> cbxTipoViaje;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1653,6 +2033,7 @@ public class FormViajes extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> lblPiloto;
     private javax.swing.JComboBox<String> lblRuta;
     private javax.swing.JLabel lblTaribaBase;
+    private javax.swing.JLabel lblTipoViaje;
     private javax.swing.JComboBox<String> lblVehiculo;
     private javax.swing.JRadioButton rbtnActivoVehiculo;
     private com.github.lgooddatepicker.components.TimePicker timePicker1;

@@ -8,7 +8,7 @@ package app_proyecto3viajes;
  *
  * @author angls
  */
-public class Ruta implements Persistible {
+public class Ruta implements Persistible, java.io.Serializable {
     //Atributos de la clase
     private String origen;
     private String destino;

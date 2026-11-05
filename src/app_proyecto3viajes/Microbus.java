@@ -12,21 +12,12 @@ package app_proyecto3viajes;
 public class Microbus extends Vehiculo {
 
     //Recargo fijo por pasajero (Q)
-    public static final double RECARGO_POR_DEFECTO = 5.00;
-
     private double recargo;
 
     public Microbus(String placa, int capacidad, String estado, double kilometraje, double kmDesdeServicio, boolean activo) {
-        this(placa, capacidad, estado, kilometraje, kmDesdeServicio, activo, RECARGO_POR_DEFECTO);
-    }
-
-    public Microbus(String placa, int capacidad, String estado, double kilometraje, double kmDesdeServicio, boolean activo, double recargo) {
         super(placa, capacidad, estado, kilometraje, kmDesdeServicio, activo);
-        this.recargo = recargo;
+        this.recargo = 5.00;
     }
-
-    public double getRecargo() { return recargo; }
-    public void setRecargo(double recargo) { this.recargo = recargo; }
 
     @Override
     public double calcularCobro(Ruta ruta, int cantidad) {

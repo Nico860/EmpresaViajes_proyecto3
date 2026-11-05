@@ -4,7 +4,6 @@
  */
 package app_proyecto3viajes;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -12,7 +11,7 @@ import java.time.LocalTime;
  *
  * @author tzulmoran
  */
-public class Viaje implements Serializable {
+public class Viaje implements java.io.Serializable {
     
     //Atributos privados
     private LocalDate fecha;

@@ -8,7 +8,7 @@ package app_proyecto3viajes;
  *
  * @author tzulmoran
  */
-public abstract class Persona {
+public abstract class Persona implements java.io.Serializable {
     //Crear accesos directos con protectec para 
     //las clases hijas 
     protected String dpi;

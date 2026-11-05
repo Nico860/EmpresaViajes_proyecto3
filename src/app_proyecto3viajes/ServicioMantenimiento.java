@@ -53,7 +53,7 @@ public class ServicioMantenimiento implements Persistible {
     @Override
     public String aLineaTexto(){
         //Guardar fecha placa y descripción del servicio
-        return fecha.toString() + ", " + vehiculo.getPlaca() + ", " + descripcion;
+        return fecha.toString() + "," + vehiculo.getPlaca() + "," + descripcion;
     }
     
     
