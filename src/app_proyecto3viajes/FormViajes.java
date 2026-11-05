@@ -992,6 +992,13 @@ public class FormViajes extends javax.swing.JFrame {
             refrescarComboReporte();
             mostrarReporte();
         });
+        
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                empresa.guardarTodoElSistema(); // Guarda automáticamente en .txt al cerrar
+            }
+        });
 
         refrescarTodo();
         setLocationRelativeTo(null);

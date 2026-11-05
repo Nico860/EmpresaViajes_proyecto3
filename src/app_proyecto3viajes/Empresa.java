@@ -491,4 +491,21 @@ public class Empresa {
         }
         return total;
     }
+    
+    //Persistencia de datos del archivo
+    public void guardarDatos(String rutaArchivo, java.util.ArrayList<? extends Persistible> lista) {
+        try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.FileWriter(rutaArchivo))) {
+            for (Persistible p : lista) {
+                pw.println(p.aLineaTexto());
+            }
+        } catch (java.io.IOException e) {
+            System.err.println("Error al guardar en " + rutaArchivo + ": " + e.getMessage());
+        }
+    }
+
+    public void guardarTodoElSistema() {
+        guardarDatos("rutas.txt", rutas);
+        guardarDatos("pilotos.txt", pilotos);
+        guardarDatos("vehiculos.txt", vehiculos);
+    }
 }
